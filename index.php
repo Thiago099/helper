@@ -34,8 +34,7 @@
       <?php endif; ?>
       <input type="submit" name="" value="Submit">
       </form>
-    <textarea name="name" rows="40" cols="200">
-      <?php
+    <textarea name="name" rows="40" cols="200"><?php
       if(isset($_GET['database'])&&isset($_GET['table']))
       {
         $db=new sql($_GET['database']);
