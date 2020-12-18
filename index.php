@@ -34,7 +34,6 @@
       <?php endif; ?>
       <input type="submit" name="" value="Submit">
       </form>
-
     <textarea name="name" rows="40" cols="200"><?php
       if(isset($_GET['database'])&&isset($_GET['table']))
       {
@@ -61,7 +60,7 @@
       {
         $db=new sql($_GET['database']);
         $result=$db->query("DESC $_GET[table]");
-        $ret="{";
+        $ret="{\n";
         foreach ($result as $i)
         {
           $ii=$i['Field'];
@@ -75,10 +74,15 @@
           else if(!(strpos($str, 'double')      === false)) $str='0.0';
           else if(!(strpos($str, 'datetime')    === false)) $str='"2020-11-24 00:00:00.000"';
           else if(!(strpos($str, 'date')        === false)) $str='"2020-11-24"';
-          $ret.="\"$ii\"";
+          $a ="   \"$ii\" ";
+          $count=70-strlen($a);
+          for ($j=0; $j < $count; $j++) {
+            $a.=' ';
+          }
+          $ret.="$a: $str,\n";
         }
-        $ret=substr($ret, 0, -1);
-        $ret.= "}";
+        $ret=substr($ret, 0, -2);
+        $ret.= "\n}";
         echo $ret;
       }
       ?>
