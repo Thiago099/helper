@@ -43,7 +43,9 @@
         foreach ($result as $i)
         {
           $ii=$i['Field'];
-          if($ii=='id')continue;
+                if($ii=='id')        continue;
+          else if($ii=='criado_por') continue;
+          else if($ii=='criado_em')  continue;
           $str ="   '$ii' ";
           $count=70-strlen($str);
           for ($j=0; $j < $count; $j++) {
@@ -65,6 +67,8 @@
         {
           $ii=$i['Field'];
           $ij=$i['Type'];
+               if($ii=='criado_por') continue;
+          else if($ii=='criado_em')  continue;
           $str="SQL-$ij";
                if(!(strpos($str, 'varchar')     === false)) $str='""';
           else if(!(strpos($str, 'tinyint(1)')  === false)) $str='false';
