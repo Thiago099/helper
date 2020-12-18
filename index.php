@@ -44,10 +44,10 @@
         {
           $ii=$i['Field'];
           if($ii=='id')continue;
-          $str ="&nbsp&nbsp&nbsp'$ii' ";
+          $str ="   '$ii' ";
           $count=80-strlen($str);
           for ($j=0; $j < $count; $j++) {
-            $str.='&nbsp';
+            $str.=' ';
           }
           echo "$str=> \$dados->$ii,\n";
         }
@@ -71,6 +71,7 @@
           else if(!(strpos($str, 'int')         === false)) $str='0';
           else if(!(strpos($str, 'float')       === false)) $str='0.0';
           else if(!(strpos($str, 'decimal')     === false)) $str='0.0';
+          else if(!(strpos($str, 'double')      === false)) $str='0.0';
           else if(!(strpos($str, 'datetime')    === false)) $str='"2020-11-24 00:00:00.000"';
           else if(!(strpos($str, 'date')        === false)) $str='"2020-11-24"';
           $ret.="\"$ii\":$str,";
