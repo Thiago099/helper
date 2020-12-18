@@ -111,12 +111,13 @@
         foreach ($fks as $i) {
             $ct=$i['tabela'];
             $fields=$db->query("DESC $ct");
+            $fk_name=str_replace("id_","",$i['coluna']);
             foreach ($fields as $j) {
               $jj=$j['Field'];
               if($i['chave']==$jj)continue;
-              $select.="$i[coluna].$jj AS {$jj}_$i[coluna],\n";
+              $select.="$fk_name.$jj AS {$jj}_$fk_name,\n";
             }
-            $join.="LEFT JOIN $ct AS $i[coluna] ON $table.$i[coluna] = $i[coluna].$i[chave]\n";
+            $join.="LEFT JOIN $ct AS $fk_name ON $table.$i[coluna] = $fk_name.$i[chave]\n";
         }
 /*
         foreach ($fks as $i) {
