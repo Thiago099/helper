@@ -69,6 +69,8 @@
                if(!(strpos($str, 'varchar')     === false)) $str='""';
           else if(!(strpos($str, 'tinyint(1)')  === false)) $str='false';
           else if(!(strpos($str, 'int')         === false)) $str='0';
+          else if(!(strpos($str, 'float')       === false)) $str='0.0';
+          else if(!(strpos($str, 'decimal')     === false)) $str='0.0';
           else if(!(strpos($str, 'datetime')    === false)) $str='"2020-11-24 00:00:00.000"';
           else if(!(strpos($str, 'date')        === false)) $str='"2020-11-24"';
           $ret.="\"$ii\":$str,";
