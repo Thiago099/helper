@@ -55,5 +55,20 @@
       }
       ?>
     </textarea>
+    <textarea name="name" rows="40" cols="200"><?php
+      if(isset($_GET['database'])&&isset($_GET['table']))
+      {
+        $db=new sql($_GET['database']);
+        $result=$db->query("DESC $_GET[table]");
+        echo "{";
+        foreach ($result as $i)
+        {
+          $ii=$i['Field'];
+          echo "\"$ii\":$i[Type],";
+        }
+        echo '}';
+      }
+      ?>
+    </textarea>
   </body>
 </html>
