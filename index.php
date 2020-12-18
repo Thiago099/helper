@@ -34,7 +34,7 @@
       <?php endif; ?>
       <input type="submit" name="" value="Submit">
       </form>
-    <textarea name="name" rows="40" cols="200"><?php
+    <textarea name="name" rows="40" cols="200" spellcheck="false"><?php
       if(isset($_GET['database'])&&isset($_GET['table']))
       {
         $db=new sql($_GET['database']);
@@ -57,7 +57,7 @@
       }
       ?>
     </textarea>
-    <textarea name="name" rows="40" cols="200"><?php
+    <textarea name="name" rows="40" cols="200" spellcheck="false"><?php
       if(isset($_GET['database'])&&isset($_GET['table']))
       {
         $db=new sql($_GET['database']);
@@ -92,7 +92,7 @@
       }
       ?>
     </textarea>
-    <textarea name="name" rows="40" cols="200"><?php
+    <textarea name="name" rows="40" cols="200" spellcheck="false"><?php
     if(isset($_GET['database'])&&isset($_GET['table']))
     {
       function loop($database,$table,&$join,&$select)
@@ -119,7 +119,7 @@
             }
 
             $join.="LEFT JOIN $ct";
-            if($ct!= $fk_name)$join.=" AS $fk_name";
+            if($ct != $fk_name)$join.=" AS $fk_name";
             $join.=" ON $table.$i[coluna] = $fk_name.$i[chave]\n";
         }
 /*
