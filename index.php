@@ -72,6 +72,7 @@
           $str="SQL-$ij";
                if(!(strpos($str, 'varchar')     === false)) $str='""';
           else if(!(strpos($str, 'tinyint(1)')  === false)) $str='false';
+          else if(!(strpos($str, 'text')        === false)) $str='""';
           else if(!(strpos($str, 'int')         === false)) $str='0';
           else if(!(strpos($str, 'float')       === false)) $str='0.0';
           else if(!(strpos($str, 'decimal')     === false)) $str='0.0';
