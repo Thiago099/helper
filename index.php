@@ -114,9 +114,9 @@
             foreach ($fields as $j) {
               $jj=$j['Field'];
               if($i['chave']==$jj)continue;
-              $select.="{$table}_$i[coluna].$jj AS {$jj}_$ct,\n";
+              $select.="$i[coluna].$jj AS {$jj}_$ct,\n";
             }
-            $join.="LEFT JOIN $ct AS {$table}_$i[coluna] ON $table.$i[coluna] = {$table}_$i[coluna].$i[chave]\n";
+            $join.="LEFT JOIN $ct AS $i[coluna] ON $table.$i[coluna] = $i[coluna].$i[chave]\n";
         }
 /*
         foreach ($fks as $i) {
