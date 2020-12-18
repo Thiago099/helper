@@ -4,8 +4,10 @@
     <meta charset="utf-8">
     <title></title>
     <?php include 'bin/sql.php';?>
+    <link rel="stylesheet" href="bin/style.css">
   </head>
   <body>
+<div class="container">
 
     <form class="" action="" method="get">
       <select class="" name="database">
@@ -137,4 +139,5 @@
     }
     ?></textarea>
   </body>
+  </div>
 </html>
