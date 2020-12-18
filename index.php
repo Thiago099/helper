@@ -60,13 +60,22 @@
       {
         $db=new sql($_GET['database']);
         $result=$db->query("DESC $_GET[table]");
-        echo "{";
+        $ret='{';
         foreach ($result as $i)
         {
           $ii=$i['Field'];
-          echo "\"$ii\":$i[Type],";
+          $ij=$i['Type'];
+          $str="SQL-$ij";
+               if(!(strpos($str, 'varchar')     === false)) $str='""';
+          else if(!(strpos($str, 'tinyint(1)')  === false)) $str='false';
+          else if(!(strpos($str, 'int')         === false)) $str='0';
+          else if(!(strpos($str, 'datetime')    === false)) $str='"2020-11-24"';
+          else if(!(strpos($str, 'date')        === false)) $str='"2020-11-24"';
+          $ret.="\"$ii\":$str,";
         }
-        echo '}';
+        $ret=substr($ret, 0, -1);
+        $ret.= '}';
+        echo $ret;
       }
       ?>
     </textarea>
