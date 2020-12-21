@@ -74,6 +74,18 @@ else
   \$dados_insert['$_GET[table]']['updated_at'] = date('Y-m-d H:i:s', time());
   \$result = \$this->$_GET[table]->atualizar(\$dados_insert, \$dados->id);
 }
+
+if (\$result)
+{
+   \$response['lista']  = \$this->$_GET[table]->get(\$result);
+}
+else
+{
+   \$response = [
+      'status' => 'erro',
+      'lista'  => [],
+   ];
+}
 ";
       }
       ?>
