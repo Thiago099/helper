@@ -56,6 +56,25 @@
           echo ident("   '$ii' ",70)."=> \$dados->$ii,\n";
         }
         echo '];';
+        echo "
+
+\$header = (object) \$this->input->request_headers();
+\$user = (object) \$this->jwt->decode(isset(\$header->authorization) ? \$header->authorization : \$header->Authorization, CONSUMER_KEY);
+\$dados_insert['id_usuario']=\$user->id_usuario;
+
+if ((int)\$dados->id == 0)
+{
+  \$dados_insert['$_GET[table]']['created_by'] = \$user->id_usuario;
+  \$dados_insert['$_GET[table]']['created_at'] = date('Y-m-d H:i:s', time());
+  \$result = \$this->abastecimento_unidade_armazenamento->salvar(\$dados_insert);
+}
+else
+{
+  \$dados_insert['$_GET[table]']['updated_by'] = \$user->id_usuario;
+  \$dados_insert['$_GET[table]']['updated_at'] = date('Y-m-d H:i:s', time());
+  \$result = \$this->$_GET[table]->atualizar(\$dados_insert, \$dados->id);
+}
+";
       }
       ?>
     </textarea>
