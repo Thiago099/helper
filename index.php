@@ -124,10 +124,10 @@
             if($ct != $fk_name)$join.=" AS $fk_name";
             $join.=" ON $table.$i[coluna] = $fk_name.$i[chave]\n";
         }
-/*
-        foreach ($fks as $i) {
-            loop($database,$i['tabela'],$join,$select);
-        }*/
+
+        // foreach ($fks as $i) {
+        //     loop($database,$i['tabela'],$join,$select);
+        // }
 
       }
       $join='';
@@ -138,6 +138,40 @@
       echo "SELECT\n$_GET[table].*{$select}FROM $_GET[table]\n$join";
     }
     ?></textarea>
+    <textarea name="name" rows="40" cols="200" spellcheck="false"><?php
+      if(isset($_GET['database'])&&isset($_GET['table']))
+      {
+        $db=new sql($_GET['database']);
+        $result=$db->query("DESC $_GET[table]");
+        $ret="INSERT INTO $_GET[table]\n(\n";
+        foreach ($result as $i) {
+          $ii=$i['Field'];
+          $ret.="   $ii,\n";
+        }
+        $ret=substr($ret, 0, -2);
+        $ret.="\n)\nVALUES\n(\n";
+        foreach ($result as $i)
+        {
+          $ii=$i['Field'];
+          $ij=$i['Type'];
+          $str="SQL-$ij";
+               if(!(strpos($str, 'varchar')     === false)) $str='""';
+          else if(!(strpos($str, 'tinyint(1)')  === false)) $str='false';
+          else if(!(strpos($str, 'text')        === false)) $str='""';
+          else if(!(strpos($str, 'int')         === false)) $str='0';
+          else if(!(strpos($str, 'float')       === false)) $str='0.0';
+          else if(!(strpos($str, 'decimal')     === false)) $str='0.0';
+          else if(!(strpos($str, 'double')      === false)) $str='0.0';
+          else if(!(strpos($str, 'datetime')    === false)) $str='"2020-11-24 00:00:00.000"';
+          else if(!(strpos($str, 'date')        === false)) $str='"2020-11-24"';
+          $ret.="   $str,\n";
+        }
+        $ret=substr($ret, 0, -2);
+        $ret.= "\n)\n";
+        echo $ret;
+      }
+      ?>
+    </textarea>
   </body>
   </div>
 </html>
