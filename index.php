@@ -45,9 +45,11 @@
         foreach ($result as $i)
         {
           $ii=$i['Field'];
-                if($ii=='id')        continue;
-          else if($ii=='criado_por') continue;
-          else if($ii=='criado_em')  continue;
+                if($ii=='id')         continue;
+           else if($ii=='created_by') continue;
+           else if($ii=='created_at') continue;
+           else if($ii=='updated_by') continue;
+           else if($ii=='updated_at') continue;
           $str ="   '$ii' ";
           $count=70-strlen($str);
           for ($j=0; $j < $count; $j++) {
