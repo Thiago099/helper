@@ -115,7 +115,7 @@
             foreach ($fields as $j) {
               $jj=$j['Field'];
               if($i['chave']==$jj)continue;
-              $select.=ident($fk_name.$jj,70)." AS {$jj}_$fk_name,\n";
+              $select.=ident("$fk_name.$jj",70)." AS {$jj}_$fk_name,\n";
             }
 
             $join.="LEFT JOIN $ct";
