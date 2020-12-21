@@ -3,7 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <?php include 'bin/sql.php';?>
+    <?php
+     include 'bin/sql.php';
+     include 'bin/misc.php';
+     ?>
     <link rel="stylesheet" href="bin/style.css">
   </head>
   <body>
@@ -50,12 +53,7 @@
            else if($ii=='created_at') continue;
            else if($ii=='updated_by') continue;
            else if($ii=='updated_at') continue;
-          $str ="   '$ii' ";
-          $count=70-strlen($str);
-          for ($j=0; $j < $count; $j++) {
-            $str.=' ';
-          }
-          echo "$str=> \$dados->$ii,\n";
+          echo ident("   '$ii' ",70)."=> \$dados->$ii,\n";
         }
         echo '];';
       }
@@ -85,12 +83,8 @@
           else if(!(strpos($str, 'double')      === false)) $str='0.0';
           else if(!(strpos($str, 'datetime')    === false)) $str='"2020-11-24 00:00:00.000"';
           else if(!(strpos($str, 'date')        === false)) $str='"2020-11-24"';
-          $a ="   \"$ii\" ";
-          $count=70-strlen($a);
-          for ($j=0; $j < $count; $j++) {
-            $a.=' ';
-          }
-          $ret.="$a: $str,\n";
+
+          $ret.=ident("   \"$ii\" ",70).": $str,\n";
         }
         $ret=substr($ret, 0, -2);
         $ret.= "\n}";
@@ -121,7 +115,7 @@
             foreach ($fields as $j) {
               $jj=$j['Field'];
               if($i['chave']==$jj)continue;
-              $select.="$fk_name.$jj AS {$jj}_$fk_name,\n";
+              $select.=ident($fk_name.$jj,70)." AS {$jj}_$fk_name,\n";
             }
 
             $join.="LEFT JOIN $ct";
