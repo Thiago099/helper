@@ -69,8 +69,10 @@
         {
           $ii=$i['Field'];
           $ij=$i['Type'];
-               if($ii=='criado_por') continue;
-          else if($ii=='criado_em')  continue;
+               if($ii=='created_by') continue;
+          else if($ii=='created_at') continue;
+          else if($ii=='updated_by') continue;
+          else if($ii=='updated_at') continue;
           $str="SQL-$ij";
                if(!(strpos($str, 'varchar')     === false)) $str='""';
           else if(!(strpos($str, 'tinyint(1)')  === false)) $str='false';
