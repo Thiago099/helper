@@ -192,6 +192,7 @@ ADD COLUMN `created_by` INT NULL,
 ADD COLUMN `created_at` DATETIME NULL,
 ADD COLUMN `updated_by` INT NULL,
 ADD COLUMN `updated_at` DATETIME NULL,
+ADD COLUMN `excluido` TINYINT(1) NULL DEFAULT NULL,
 ADD CONSTRAINT `FK_{$table}_created_by` FOREIGN KEY (`created_by`) REFERENCES `usuario` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION,
 ADD CONSTRAINT `FK_{$table}_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `usuario` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION;";
       }
