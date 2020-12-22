@@ -66,7 +66,7 @@ if ((int)\$dados->id == 0)
 {
   \$dados_insert['$_GET[table]']['created_by'] = \$user->id_usuario;
   \$dados_insert['$_GET[table]']['created_at'] = date('Y-m-d H:i:s', time());
-  \$result = \$this->abastecimento_unidade_armazenamento->salvar(\$dados_insert);
+  \$result = \$this->$_GET[table]->salvar(\$dados_insert);
 }
 else
 {
