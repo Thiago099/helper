@@ -127,7 +127,7 @@ else
 
       ?>
     </textarea>
-    <label>Json</label>
+    <label>JSON</label>
     <textarea name="name" rows="40" cols="200" spellcheck="false"><?php
         $database=$_GET['database'];
         $table=$_GET['table'];
