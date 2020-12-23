@@ -37,7 +37,28 @@
         <?php endforeach;?>
         </select>
       <?php endif; ?>
-      <input type="submit" name="action" value="Submit">
+      <input type="submit" value="Selecionar">
+      <?php if(isset($_GET['table'])): ?>
+        <input type="submit" name="action" value="Adicionar campos de controle">
+      <?php endif ?>
+      <?php
+      if(isset($_GET['action'])&&$_GET['action']=='Adicionar campos de controle')
+      {
+        $database = $_GET['database'];
+        $table = $_GET['table'];
+        $db=new sql($database);
+        $result=$db->run("ALTER TABLE `$database`.`$table`
+              ADD COLUMN `id` INT NOT NULL AUTO_INCREMENT,
+              ADD COLUMN `created_by` INT NULL,
+              ADD COLUMN `created_at` DATETIME NULL,
+              ADD COLUMN `updated_by` INT NULL,
+              ADD COLUMN `updated_at` DATETIME NULL,
+              ADD COLUMN `excluido` TINYINT(1) NULL DEFAULT NULL,
+              ADD PRIMARY KEY (`id`),
+              ADD CONSTRAINT `FK_{$table}_created_by` FOREIGN KEY (`created_by`) REFERENCES `usuario` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION,
+              ADD CONSTRAINT `FK_{$table}_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `usuario` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION;");
+      }
+      ?>
       </form>
     <textarea name="name" rows="40" cols="200" spellcheck="false"><?php
       if(isset($_GET['database'])&&isset($_GET['table']))

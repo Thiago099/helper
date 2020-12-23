@@ -22,6 +22,11 @@ class sql
     }
     return $ret;
   }
+  function run($sql)
+  {
+    $ret=[];
+    $result = $this->conn->query($sql);
+  }
   function close()
   {
     $conn->close();

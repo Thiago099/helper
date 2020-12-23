@@ -1,17 +1,41 @@
-input,select,textarea{
-  padding: 10px;
-  margin: 10px;
-  border-radius: 5px;
-  width: 100%;
+*{
+  background-color: #171717;
+  color: white;
 }
-textarea{
-  width: 98%;
+/*Spacing*/
+  input,select,textarea,div.error, select option{
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    width: 100%;
 
-}
-input,select{
+  }
+  /*Color*/
+  input,select,textarea, select option{
+    background: #292929;
+    outline: none;
+    border:1px solid white;
+  }
+  input:active{
+    background-color: #181818;
+  }
+
+  select{
+    border-color: white;
+
+  }
+  div.error
+  {
+    color:red;
+    font-size: 1.1em;
+  }
+  textarea{
+    width: 98%;
+  }
+  input,select{
     font-size: 1.3em;
-}
-div.container{
-  margin: auto;
-  max-width: 1000px;
-}
+  }
+  div.container{
+    margin: auto;
+    max-width: 1000px;
+  }
