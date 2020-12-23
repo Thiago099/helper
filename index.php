@@ -6,6 +6,13 @@
     <?php
      include 'bin/sql.php';
      include 'bin/misc.php';
+     function exists($database,$table)
+     {
+       $db=new sql();
+       return count($db->query("SELECT TABLE_NAME AS tabela FROM INFORMATION_SCHEMA.TABLES
+       WHERE TABLE_SCHEMA = '$database'
+       AND  TABLE_NAME = '$table'"))==1;
+     }
      ?>
     <link rel="stylesheet" href="bin/style.css">
   </head>
@@ -63,9 +70,12 @@
       }
       ?>
       </form>
+      <?php
+      if(isset($_GET['database'])&&isset($_GET['table']) && exists($_GET['database'],$_GET['table'])):
+      ?>
     <textarea name="name" rows="40" cols="200" spellcheck="false"><?php
-      if(isset($_GET['database'])&&isset($_GET['table']))
-      {
+
+
         $db=new sql($_GET['database']);
         $result=$db->query("DESC $_GET[table]");
         echo "\$dados_insert['$_GET[table]'] = [\n";
@@ -111,12 +121,10 @@ else
    ];
 }
 ";
-      }
+
       ?>
     </textarea>
     <textarea name="name" rows="40" cols="200" spellcheck="false"><?php
-      if(isset($_GET['database'])&&isset($_GET['table']))
-      {
         $database=$_GET['database'];
         $table=$_GET['table'];
 
@@ -159,12 +167,9 @@ else
         $ret=substr($ret, 0, -2);
         $ret.= "\n}";
         echo $ret;
-      }
       ?>
     </textarea>
     <textarea name="name" rows="40" cols="200" spellcheck="false"><?php
-    if(isset($_GET['database'])&&isset($_GET['table']))
-    {
       function loop($database,$table,&$join,&$select)
       {
         $info=new sql("information_schema");
@@ -206,11 +211,8 @@ else
       if($select==",\n")$select='';
       $select=substr($select, 0, -2)."\n";
       echo "SELECT\n$_GET[table].*{$select}FROM $_GET[table]\n$join";
-    }
     ?></textarea>
     <textarea name="name" rows="40" cols="200" spellcheck="false"><?php
-      if(isset($_GET['database'])&&isset($_GET['table']))
-      {
         $database=$_GET['database'];
         $table=$_GET['table'];
 
@@ -257,8 +259,8 @@ else
         $ret=substr($ret, 0, -2);
         $ret.= "\n)\n";
         echo $ret;
-      }
       ?></textarea>
+    <?php endif; ?>
   </body>
   </div>
 </html>
