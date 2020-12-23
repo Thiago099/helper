@@ -206,21 +206,6 @@ else
     <textarea name="name" rows="40" cols="200" spellcheck="false"><?php
       if(isset($_GET['database'])&&isset($_GET['table']))
       {
-        $database = $_GET['database'];
-        $table = $_GET['table'];
-        echo "ALTER TABLE `$database`.`$table`
-ADD COLUMN `created_by` INT NULL,
-ADD COLUMN `created_at` DATETIME NULL,
-ADD COLUMN `updated_by` INT NULL,
-ADD COLUMN `updated_at` DATETIME NULL,
-ADD COLUMN `excluido` TINYINT(1) NULL DEFAULT NULL,
-ADD CONSTRAINT `FK_{$table}_created_by` FOREIGN KEY (`created_by`) REFERENCES `usuario` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION,
-ADD CONSTRAINT `FK_{$table}_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `usuario` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION;";
-      }
-      ?></textarea>
-    <textarea name="name" rows="40" cols="200" spellcheck="false"><?php
-      if(isset($_GET['database'])&&isset($_GET['table']))
-      {
         $database=$_GET['database'];
         $table=$_GET['table'];
 
