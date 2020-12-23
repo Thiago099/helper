@@ -3,12 +3,19 @@
   color: white;
 }
 /*Spacing*/
-  input,select,textarea,div.error, select option{
+  input,select,textarea,div.error, select option,label{
     padding: 10px;
     margin: 10px;
     border-radius: 5px;
     width: 100%;
 
+  }
+  label{
+
+    font-size: 1.5em;
+  }
+  label::after {
+    content: " : ";
   }
   /*Color*/
   input,select,textarea, select option{

@@ -20,6 +20,7 @@
 <div class="container">
 
     <form class="" action="" method="get">
+      <label>Banco</label>
       <select class="" name="database">
         <?php
           $db=new sql();
@@ -35,6 +36,7 @@
         $db=new sql($_GET['database']);
         $r=$db->query("SHOW TABLES");
         ?>
+        <label>Tabela</label>
         <select class="" name="table">
         <?php
         foreach ($r as $i):
@@ -73,6 +75,7 @@
       <?php
       if(isset($_GET['database'])&&isset($_GET['table']) && exists($_GET['database'],$_GET['table'])):
       ?>
+    <label>Controlador</label>
     <textarea name="name" rows="40" cols="200" spellcheck="false"><?php
 
 
@@ -124,6 +127,7 @@ else
 
       ?>
     </textarea>
+    <label>Json</label>
     <textarea name="name" rows="40" cols="200" spellcheck="false"><?php
         $database=$_GET['database'];
         $table=$_GET['table'];
@@ -169,6 +173,7 @@ else
         echo $ret;
       ?>
     </textarea>
+    <label>Select</label>
     <textarea name="name" rows="40" cols="200" spellcheck="false"><?php
       function loop($database,$table,&$join,&$select)
       {
@@ -212,6 +217,7 @@ else
       $select=substr($select, 0, -2)."\n";
       echo "SELECT\n$_GET[table].*{$select}FROM $_GET[table]\n$join";
     ?></textarea>
+    <label>Insert</label>
     <textarea name="name" rows="40" cols="200" spellcheck="false"><?php
         $database=$_GET['database'];
         $table=$_GET['table'];
