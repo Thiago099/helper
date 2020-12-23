@@ -179,6 +179,8 @@ else
         $table=$_GET['table'];
         $fields="";
         foreach ($fks as $i) {
+                 if($i['coluna']=='created_by') continue;
+            else if($i['coluna']=='updated_by') continue;
             $ct=$i['tabela'];
             $fields=$db->query("DESC $ct");
             $fk_name=str_replace("id_","",$i['coluna']);
